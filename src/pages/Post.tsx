@@ -4,13 +4,13 @@ import Layout from '../components/Layouts'
 import config from '../config';
 import { WPPost } from '../wp.interface';
 import { useLoading } from '../helpers/hooks';
-import { IonSkeletonText, IonItem, IonLabel } from '@ionic/react';
+import Single from '../components/Single';
 
 const Post: React.FC = () => {
     const {
         loading, isLoading
     } = useLoading()
-    const [post, setPost] = useState<WPPost | null>(null)
+    const [post, setPost] = useState<WPPost | undefined>(undefined)
   const { slug } = useParams<{ slug: string; }>();
     useEffect(() => {
         isLoading(true)
@@ -20,29 +20,11 @@ const Post: React.FC = () => {
                 setPost(data[0])
             })
     }, [slug])
-  if (loading || !post) {
-    return (
-      <Layout name="Loading...">
-        <IonItem>
-          <IonLabel>
-            <p>
-              <IonSkeletonText animated /><br />
-              <IonSkeletonText animated /><br />
-              <IonSkeletonText animated /><br />
-              <IonSkeletonText animated /><br />
-            </p>
-          </IonLabel>
-        </IonItem>
-      </Layout>
-    )
-  }
   return (
-    <Layout name={post.title.rendered}>
-        <IonItem>
-          <div dangerouslySetInnerHTML={{__html: post.content.rendered}} />
-      </IonItem>
-      </Layout>
-  );
+    <Layout name={post ? post.title.rendered: 'Loading'}>
+      <Single post={post} loading={loading} />
+    </Layout>
+  )
 };
 
 export default Post;

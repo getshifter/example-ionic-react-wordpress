@@ -1,17 +1,31 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router';
 import Layout from '../components/Layouts'
-import ExploreContainer from '../components/ExploreContainer';
-import './Page.css';
+import Single from '../components/Single';
+import { WPPost } from '../wp.interface';
+import { useLoading } from '../helpers/hooks';
+import config from '../config';
 
 const Page: React.FC = () => {
-
-  const { name } = useParams<{ name: string; }>();
+  
+  const {
+      loading, isLoading
+  } = useLoading()
+  const [post, setPost] = useState<WPPost | undefined>(undefined)
+const { slug } = useParams<{ slug: string; }>();
+  useEffect(() => {
+      isLoading(true)
+      config.wpClient.pages().slug(slug)
+          .then(data => {
+              isLoading(false)
+              setPost(data[0])
+          })
+  }, [slug])
   
   return (
-    <Layout name={name}>
-        <ExploreContainer name={name} />
-      </Layout>
+    <Layout name={post ? post.title.rendered: 'Loading'}>
+      <Single post={post} loading={loading} />
+    </Layout>
   );
 };
 
