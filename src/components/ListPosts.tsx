@@ -6,6 +6,7 @@ import {
     WPPost
     } from '../wp.interface'
 import config from '../config'
+import { createRelativeLink } from '../helpers/url'
 
 const ListPost: React.FC<{
     posts: WPPost[]
@@ -55,17 +56,21 @@ const ListPost: React.FC<{
     }
     return (
         <IonList>
-            {posts.map(post => (
-                <IonItem key={post.id} routerLink={`/${config.postURLPrefix}/${post.slug}`}>
-                    <IonLabel>
-                        <h3 dangerouslySetInnerHTML={{__html: post.title.rendered}} />
-                        <p>
-                            Published: {moment(post.date).format('MMMM Do YYYY')}<br/>
-                            Modified: {moment(post.modified).format('MMMM Do YYYY')}
-                        </p>
-                    </IonLabel>
-                </IonItem>
-            ))}
+            {posts.map(post => {
+                const link = createRelativeLink(config.postURLPrefix, post.slug)
+                return (
+                    <IonItem key={post.id} routerLink={link}>
+                        <IonLabel>
+                            <h3 dangerouslySetInnerHTML={{__html: post.title.rendered}} />
+                            <p>
+                                Published: {moment(post.date).format('MMMM Do YYYY')}<br/>
+                                Modified: {moment(post.modified).format('MMMM Do YYYY')}
+                            </p>
+                        </IonLabel>
+                    </IonItem>
+                    )
+                }
+            )}
         </IonList>
     )
 }

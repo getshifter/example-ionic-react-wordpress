@@ -27,16 +27,19 @@ import Home from './pages/Home';
 import Category from './pages/Category';
 import Post from './pages/Post';
 import config from './config';
+import { createRelativeLink } from './helpers/url';
 
 const App: React.FC = () => {
+  const pageURL = createRelativeLink(config.pageURLPrefix, ':slug')
+  const postURL = createRelativeLink(config.postURLPrefix, ':slug')
   return (
     <IonApp>
       <IonReactRouter>
         <IonSplitPane contentId="main">
           <Menu />
           <IonRouterOutlet id="main">
-            <Route path="/page/:name" component={Page} exact />
-            <Route path={`/${config.postURLPrefix}/:slug`} component={Post} exact />
+            <Route path={pageURL} component={Page} exact />
+            <Route path={postURL} component={Post} exact />
             <Route path="/category/:name" component={Category} exact />
             <Route path="/" component={Home} />
           </IonRouterOutlet>

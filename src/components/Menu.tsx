@@ -12,12 +12,13 @@ import {
 
 import React, { useEffect, useState } from 'react';
 import { useLocation } from 'react-router-dom';
-import { librarySharp, home } from 'ionicons/icons';
+import { librarySharp, home, readerOutline } from 'ionicons/icons';
 import './Menu.css';
 import config from '../config';
 import {
-WPCategory
+WPCategory, WPPosts
 } from '../wp.interface'
+import { createRelativeLink } from '../helpers/url';
 
 const Menu: React.FC = () => {
   const location = useLocation();
@@ -25,6 +26,7 @@ const Menu: React.FC = () => {
   const [siteName, setSiteName] = useState('loading...')
   const [description, setDescription] = useState('')
   const [categories, setCategories] = useState<WPCategory[]>([])
+  const [pages, setPages] = useState<WPPosts>([])
   
   useEffect(() => {
     // Load site metadata
@@ -36,6 +38,15 @@ const Menu: React.FC = () => {
     config.wpClient.categories().perPage(100).param({parent: 0})
     .then((data: WPCategory[]) => {
       setCategories(data.sort((a, b) => {
+        if( a.id < b.id ) return -1;
+        if( a.id > b.id ) return 1;
+        return 0;
+      }))
+    })
+    // Load pages
+    config.wpClient.pages().perPage(100)
+    .then((data: WPPosts) => {
+      setPages(data.sort((a,b) => {
         if( a.id < b.id ) return -1;
         if( a.id > b.id ) return 1;
         return 0;
@@ -70,7 +81,21 @@ const Menu: React.FC = () => {
                   <IonLabel>{category.name}</IonLabel>
                 </IonItem>
               </IonMenuToggle>
+            )}
           )}
+        </IonList>
+        <IonList id="inbox-list">
+          <IonListHeader><IonLabel>Pages</IonLabel></IonListHeader>
+          {pages.map(page => {
+            const path = createRelativeLink( config.pageURLPrefix, page.slug)
+            return (
+              <IonMenuToggle key={page.id} autoHide={false}>
+                <IonItem className={location.pathname === path ? 'selected' : ''} routerLink={path} routerDirection="none" lines="none" detail={false}>
+                  <IonIcon slot="start" icon={readerOutline} />
+                  <IonLabel>{page.title.rendered}</IonLabel>
+                </IonItem>
+              </IonMenuToggle>
+            )}
           )}
         </IonList>
       </IonContent>
