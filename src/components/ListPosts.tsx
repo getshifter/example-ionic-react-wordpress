@@ -8,8 +8,9 @@ import {
 
 const ListPost: React.FC<{
     posts: WPPost[]
-}> = ({posts}) => {
-    if (!posts || posts.length < 1) {
+    loading?: boolean;
+}> = ({posts, loading}) => {
+    if (loading || (!posts || posts.length < 1)) {
         return (
             <IonList>
                 <IonItem>

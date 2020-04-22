@@ -62,7 +62,7 @@ const Menu: React.FC = () => {
         <IonList id="inbox-list">
           <IonListHeader><IonLabel>Categories</IonLabel></IonListHeader>
           {categories.map(category => {
-            const path = `/page/${category.slug}`
+            const path = `/category/${category.slug}`
             return (
               <IonMenuToggle key={category.id} autoHide={false}>
                 <IonItem className={location.pathname === path ? 'selected' : ''} routerLink={path} routerDirection="none" lines="none" detail={false}>
