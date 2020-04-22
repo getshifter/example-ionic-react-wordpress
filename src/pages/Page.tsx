@@ -20,7 +20,7 @@ const { slug } = useParams<{ slug: string; }>();
               isLoading(false)
               setPost(data[0])
           })
-  }, [slug])
+  }, [slug, isLoading])
   
   return (
     <Layout name={post ? post.title.rendered: 'Loading'}>

@@ -5,6 +5,7 @@ import config from '../config';
 import { WPPost } from '../wp.interface';
 import { useLoading } from '../helpers/hooks';
 import Single from '../components/Single';
+import RelatedPosts from '../components/RelatedPosts';
 
 const Post: React.FC = () => {
     const {
@@ -19,10 +20,12 @@ const Post: React.FC = () => {
                 isLoading(false)
                 setPost(data[0])
             })
-    }, [slug])
+    }, [slug, isLoading])
   return (
     <Layout name={post ? post.title.rendered: 'Loading'}>
       <Single post={post} loading={loading} />
+      <RelatedPosts target="category" post={post} />
+      <RelatedPosts target="tags" post={post} />
     </Layout>
   )
 };

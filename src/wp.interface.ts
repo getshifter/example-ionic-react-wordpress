@@ -17,6 +17,8 @@ export type WPPost = {
     content: {
         rendered: string;
     }
+    categories: number[];
+    tags: number[]
 }
 export type WPPosts = Array<WPPost>
 
