@@ -5,6 +5,7 @@ import { IonList, IonItem, IonLabel, IonSkeletonText } from '@ionic/react'
 import {
     WPPost
     } from '../wp.interface'
+import config from '../config'
 
 const ListPost: React.FC<{
     posts: WPPost[]
@@ -55,7 +56,7 @@ const ListPost: React.FC<{
     return (
         <IonList>
             {posts.map(post => (
-                <IonItem key={post.id} routerLink={`/pages/${post.slug}`}>
+                <IonItem key={post.id} routerLink={`/${config.postURLPrefix}/${post.slug}`}>
                     <IonLabel>
                         <h3 dangerouslySetInnerHTML={{__html: post.title.rendered}} />
                         <p>

@@ -25,9 +25,10 @@ import '@ionic/react/css/display.css';
 import './theme/variables.css';
 import Home from './pages/Home';
 import Category from './pages/Category';
+import Post from './pages/Post';
+import config from './config';
 
 const App: React.FC = () => {
-
   return (
     <IonApp>
       <IonReactRouter>
@@ -35,6 +36,7 @@ const App: React.FC = () => {
           <Menu />
           <IonRouterOutlet id="main">
             <Route path="/page/:name" component={Page} exact />
+            <Route path={`/${config.postURLPrefix}/:slug`} component={Post} exact />
             <Route path="/category/:name" component={Category} exact />
             <Route path="/" component={Home} />
           </IonRouterOutlet>

@@ -7,7 +7,7 @@ import './Page.css';
 const Page: React.FC = () => {
 
   const { name } = useParams<{ name: string; }>();
-
+  
   return (
     <Layout name={name}>
         <ExploreContainer name={name} />
