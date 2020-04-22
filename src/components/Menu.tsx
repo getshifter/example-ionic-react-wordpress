@@ -15,18 +15,9 @@ import { useLocation } from 'react-router-dom';
 import { librarySharp, home } from 'ionicons/icons';
 import './Menu.css';
 import config from '../config';
-
-type WPCategory = {
-  count: number;
-  description: string;
-  id: number;
-  link: string;
-  meta: unknown[];
-  name: string;
-  parent: number;
-  slug: string;
-  taxonomy: string;
-}
+import {
+WPCategory
+} from '../wp.interface'
 
 const Menu: React.FC = () => {
   const location = useLocation();
