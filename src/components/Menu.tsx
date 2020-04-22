@@ -10,88 +10,77 @@ import {
   IonNote,
 } from '@ionic/react';
 
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { useLocation } from 'react-router-dom';
-import { archiveOutline, archiveSharp, bookmarkOutline, heartOutline, heartSharp, mailOutline, mailSharp, paperPlaneOutline, paperPlaneSharp, trashOutline, trashSharp, warningOutline, warningSharp } from 'ionicons/icons';
+import { librarySharp, home } from 'ionicons/icons';
 import './Menu.css';
+import config from '../config';
 
-interface AppPage {
-  url: string;
-  iosIcon: string;
-  mdIcon: string;
-  title: string;
+type WPCategory = {
+  count: number;
+  description: string;
+  id: number;
+  link: string;
+  meta: unknown[];
+  name: string;
+  parent: number;
+  slug: string;
+  taxonomy: string;
 }
-
-const appPages: AppPage[] = [
-  {
-    title: 'Inbox',
-    url: '/page/Inbox',
-    iosIcon: mailOutline,
-    mdIcon: mailSharp
-  },
-  {
-    title: 'Outbox',
-    url: '/page/Outbox',
-    iosIcon: paperPlaneOutline,
-    mdIcon: paperPlaneSharp
-  },
-  {
-    title: 'Favorites',
-    url: '/page/Favorites',
-    iosIcon: heartOutline,
-    mdIcon: heartSharp
-  },
-  {
-    title: 'Archived',
-    url: '/page/Archived',
-    iosIcon: archiveOutline,
-    mdIcon: archiveSharp
-  },
-  {
-    title: 'Trash',
-    url: '/page/Trash',
-    iosIcon: trashOutline,
-    mdIcon: trashSharp
-  },
-  {
-    title: 'Spam',
-    url: '/page/Spam',
-    iosIcon: warningOutline,
-    mdIcon: warningSharp
-  }
-];
-
-const labels = ['Family', 'Friends', 'Notes', 'Work', 'Travel', 'Reminders'];
 
 const Menu: React.FC = () => {
   const location = useLocation();
 
+  const [siteName, setSiteName] = useState('loading...')
+  const [description, setDescription] = useState('')
+  const [categories, setCategories] = useState<WPCategory[]>([])
+  
+  useEffect(() => {
+    // Load site metadata
+    config.wpClient.root().then(data => {
+      setSiteName(data.name)
+      setDescription(data.description)
+    })
+    // Load categories
+    config.wpClient.categories().perPage(100).param({parent: 0})
+    .then((data: WPCategory[]) => {
+      setCategories(data.sort((a, b) => {
+        if( a.id < b.id ) return -1;
+        if( a.id > b.id ) return 1;
+        return 0;
+      }))
+    })
+  }, [])
   return (
     <IonMenu contentId="main" type="overlay">
       <IonContent>
         <IonList id="inbox-list">
-          <IonListHeader>Inbox</IonListHeader>
-          <IonNote>hi@ionicframework.com</IonNote>
-          {appPages.map((appPage, index) => {
+          <IonListHeader>
+              <IonLabel>
+                {siteName}
+              </IonLabel>
+          </IonListHeader>
+          <IonNote>{description}</IonNote>
+          <IonMenuToggle autoHide={false}>
+            <IonItem className={location.pathname === '/page' ? 'selected' : ''} routerLink="/" routerDirection="none" lines="none" detail={false}>
+              <IonIcon slot="start" icon={home} />
+              <IonLabel>Home</IonLabel>
+            </IonItem>
+          </IonMenuToggle>
+          </IonList>
+        <IonList id="inbox-list">
+          <IonListHeader><IonLabel>Categories</IonLabel></IonListHeader>
+          {categories.map(category => {
+            const path = `/page/${category.slug}`
             return (
-              <IonMenuToggle key={index} autoHide={false}>
-                <IonItem className={location.pathname === appPage.url ? 'selected' : ''} routerLink={appPage.url} routerDirection="none" lines="none" detail={false}>
-                  <IonIcon slot="start" icon={appPage.iosIcon} />
-                  <IonLabel>{appPage.title}</IonLabel>
+              <IonMenuToggle key={category.id} autoHide={false}>
+                <IonItem className={location.pathname === path ? 'selected' : ''} routerLink={path} routerDirection="none" lines="none" detail={false}>
+                  <IonIcon slot="start" icon={librarySharp} />
+                  <IonLabel>{category.name}</IonLabel>
                 </IonItem>
               </IonMenuToggle>
-            );
-          })}
-        </IonList>
-
-        <IonList id="labels-list">
-          <IonListHeader>Labels</IonListHeader>
-          {labels.map((label, index) => (
-            <IonItem lines="none" key={index}>
-              <IonIcon slot="start" icon={bookmarkOutline} />
-              <IonLabel>{label}</IonLabel>
-            </IonItem>
-          ))}
+          )}
+          )}
         </IonList>
       </IonContent>
     </IonMenu>
