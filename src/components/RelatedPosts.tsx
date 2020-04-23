@@ -44,7 +44,7 @@ const RelatedPosts: React.FC<{
                             </IonItem>
                         </IonCol>
                     )
-                }): <p>No posts</p>}
+                }): <p className="ion-padding-start">No posts</p>}
             </IonRow>
         </IonGrid>
     )
