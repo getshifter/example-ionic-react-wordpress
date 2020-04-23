@@ -1,6 +1,6 @@
-import React from 'react';
+import React, { Fragment } from 'react';
 import { WPPost } from '../wp.interface';
-import { IonSkeletonText, IonItem, IonLabel } from '@ionic/react';
+import { IonSkeletonText, IonItem, IonLabel, IonBadge } from '@ionic/react';
 
 const Single: React.FC<{
     post?: WPPost;
@@ -27,6 +27,36 @@ const Single: React.FC<{
                 <h1 dangerouslySetInnerHTML={{__html: post.title.rendered}} />
             </IonLabel>
             <div dangerouslySetInnerHTML={{__html: post.content.rendered}} />
+                {post._embedded && post._embedded["wp:term"] ? (
+                  <Fragment>
+                    <p>Categories:</p>
+                    {post._embedded["wp:term"].map(terms => {
+                      return (
+                        <Fragment key={`cat-${terms[0].id}`}>
+                          {terms.map(term => {
+                            if (term.taxonomy !== "category") return null;
+                            return (
+                              <IonBadge key={`category-${term.id}`} style={{marginRight: 5}}>{term.name}</IonBadge>
+                            )
+                          })}
+                        </Fragment>
+                      )
+                    })}
+                    <p>Tags:</p>
+                    {post._embedded["wp:term"].map(terms => {
+                      return (
+                        <Fragment key={`tag-${terms[0].id}`}>
+                          {terms.map(term => {
+                            if (term.taxonomy !== "post_tag") return null;
+                            return (
+                              <IonBadge key={`post-tag-${term.id}`} style={{marginRight: 5}}>{term.name}</IonBadge>
+                            )
+                          })}
+                        </Fragment>
+                      )
+                    })}
+                  </Fragment>
+                ): null}
         </section>
     </IonItem>
   );

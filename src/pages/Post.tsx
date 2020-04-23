@@ -16,7 +16,7 @@ const Post: React.FC = () => {
   const { slug } = useParams<{ slug: string; }>();
     useEffect(() => {
         isLoading(true)
-        config.wpClient.posts().slug(slug)
+        config.wpClient.posts().embed().slug(slug)
             .then(data => {
                 isLoading(false)
                 setPost(data[0])
