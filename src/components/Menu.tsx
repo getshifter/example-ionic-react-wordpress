@@ -9,8 +9,10 @@ import {
   IonMenuToggle,
   IonNote,
 } from '@ionic/react';
-
-import React, { useEffect, useState } from 'react';
+import {
+  useMediaQuery
+} from 'react-responsive'
+import React, { useEffect, useState, useMemo } from 'react';
 import { useLocation } from 'react-router-dom';
 import { librarySharp, home, readerOutline } from 'ionicons/icons';
 import './Menu.css';
@@ -53,8 +55,10 @@ const Menu: React.FC = () => {
       }))
     })
   }, [])
+  const isDesktop = useMediaQuery({ minWidth: 992 })
+  const side = useMemo(() => isDesktop ? 'start' : 'end', [isDesktop])
   return (
-    <IonMenu contentId="main" type="overlay">
+    <IonMenu contentId="main" type="overlay" side={side}>
       <IonContent>
         <IonList id="inbox-list">
           <IonListHeader>

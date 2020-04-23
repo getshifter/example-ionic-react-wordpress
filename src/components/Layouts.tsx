@@ -1,32 +1,35 @@
-import { IonButtons, IonContent, IonHeader, IonMenuButton, IonPage, IonTitle, IonToolbar, IonButton } from '@ionic/react';
-import React from 'react';
+import { IonButtons, IonContent, IonHeader, IonMenuButton, IonPage, IonTitle, IonToolbar, IonButton, IonBackButton } from '@ionic/react';
+import React, {useState, useEffect} from 'react';
 import { withRouter, RouteComponentProps } from 'react-router';
+import config from '../config';
 
 const Layout: React.FC<{
     children: React.ReactChild | React.ReactChild[];
-    name: string;
 } & RouteComponentProps> = (props) => {
-    const {children, name, match} = props
+    const [siteName, setSiteName] = useState('loading...')
+    const {children, match} = props
+    useEffect(() => {
+        config.wpClient.root().then(data => {
+            setSiteName(data.name)
+        })
+    }, [])
   return (
     <IonPage>
       <IonHeader>
         <IonToolbar>
           <IonButtons slot="start">
-            <IonMenuButton />
             {match.url === '/' ? null: (
-                <IonButton href="/">Back</IonButton>
+                <IonBackButton />
             )}
           </IonButtons>
-          <IonTitle>{name}</IonTitle>
+          <IonTitle>{siteName}</IonTitle>
+          <IonButtons slot="end">
+            <IonMenuButton />
+            </IonButtons>
         </IonToolbar>
       </IonHeader>
 
       <IonContent>
-        <IonHeader collapse="condense">
-          <IonToolbar>
-            <IonTitle size="large">{name}</IonTitle>
-          </IonToolbar>
-        </IonHeader>
         {children}
       </IonContent>
     </IonPage>

@@ -22,7 +22,7 @@ const Post: React.FC = () => {
             })
     }, [slug, isLoading])
   return (
-    <Layout name={post ? post.title.rendered: 'Loading'}>
+    <Layout>
       <Single post={post} loading={loading} />
       <RelatedPosts target="category" post={post} />
       <RelatedPosts target="tags" post={post} />

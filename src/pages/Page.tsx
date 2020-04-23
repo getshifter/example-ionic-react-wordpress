@@ -23,7 +23,7 @@ const { slug } = useParams<{ slug: string; }>();
   }, [slug, isLoading])
   
   return (
-    <Layout name={post ? post.title.rendered: 'Loading'}>
+    <Layout>
       <Single post={post} loading={loading} />
     </Layout>
   );

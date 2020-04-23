@@ -23,7 +23,7 @@ const Home: React.FC = () => {
         })
     }, [])
     return (
-        <Layout name="Home">
+        <Layout>
             <IonRefresher slot="fixed" onIonRefresh={handleRefresh}>
                 <IonRefresherContent />
             </IonRefresher>

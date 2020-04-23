@@ -23,7 +23,7 @@ const Category: React.FC = () => {
         })
     }, [name])
     return (
-        <Layout name={`Category: ${name}`}>
+        <Layout>
             <ListPost posts={posts} loading={loading} />
         </Layout>
     )
