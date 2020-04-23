@@ -26,7 +26,7 @@ const RelatedPosts: React.FC<{
     if (!post) return null;
     return (
         <IonGrid>
-            <h2>Related {target} Posts</h2>
+            <h2 className="ion-padding-start">Related {target} Posts</h2>
             <IonRow>
                 {posts.length > 0 ?
                 posts.map(p => {
