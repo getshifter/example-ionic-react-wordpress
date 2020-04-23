@@ -8,7 +8,7 @@ class Config {
         return ''
     }
     get wordpressURL() {
-        return'https://central.wordcamp.org/wp-json'
+        return'https://b5d85ac952f05c2bcb7e0b42979eff431beac2f1.hl-a.getshifter.co/wp-json'
     }
     get wpClient() {
         return new wp({

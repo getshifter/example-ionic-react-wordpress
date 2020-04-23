@@ -14,12 +14,12 @@ const RelatedPosts: React.FC<{
         <>
         <IonGrid style={style}>
             {title ? <h2 className="ion-padding-start">{title}</h2>: null}
-            <IonRow>
+            <IonRow className="ion-align-items-stretch">
                 {posts.length > 0 ?
                 posts.map(p => {
                     return (
                         <IonCol key={p.id}>
-                            <IonCard routerLink={createRelativeLink(config.postURLPrefix, p.slug)}>
+                            <IonCard routerLink={createRelativeLink(config.postURLPrefix, p.slug)} style={{height: '100%'}}>
                                 <IonCardHeader>
                                     <IonCardTitle>{p.title.rendered}</IonCardTitle>
                                 </IonCardHeader>
