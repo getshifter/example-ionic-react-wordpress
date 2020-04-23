@@ -1,17 +1,21 @@
-import { IonButtons, IonContent, IonHeader, IonMenuButton, IonPage, IonTitle, IonToolbar } from '@ionic/react';
+import { IonButtons, IonContent, IonHeader, IonMenuButton, IonPage, IonTitle, IonToolbar, IonButton } from '@ionic/react';
 import React from 'react';
+import { withRouter, RouteComponentProps } from 'react-router';
 
 const Layout: React.FC<{
     children: React.ReactChild | React.ReactChild[];
     name: string;
-}> = ({children, name}) => {
-
+} & RouteComponentProps> = (props) => {
+    const {children, name, match} = props
   return (
     <IonPage>
       <IonHeader>
         <IonToolbar>
           <IonButtons slot="start">
             <IonMenuButton />
+            {match.url === '/' ? null: (
+                <IonButton href="/">Back</IonButton>
+            )}
           </IonButtons>
           <IonTitle>{name}</IonTitle>
         </IonToolbar>
@@ -29,4 +33,4 @@ const Layout: React.FC<{
   );
 };
 
-export default Layout;
+export default withRouter(Layout);
