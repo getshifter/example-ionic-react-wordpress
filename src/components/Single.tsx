@@ -22,8 +22,13 @@ const Single: React.FC<{
   }
   return (
     <IonItem>
-      <div dangerouslySetInnerHTML={{__html: post.content.rendered}} />
-  </IonItem>
+        <section className="ion-padding ion-margin-top">
+            <IonLabel>
+                <h1 dangerouslySetInnerHTML={{__html: post.title.rendered}} />
+            </IonLabel>
+            <div dangerouslySetInnerHTML={{__html: post.content.rendered}} />
+        </section>
+    </IonItem>
   );
 };
 
