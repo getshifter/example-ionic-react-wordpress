@@ -13,7 +13,7 @@ const Home: React.FC = () => {
     const [stickyPosts, setStickyPosts] = useState<WPPost[]>([])
     const [posts, setPosts] = useState<WPPost[]>([])
     useEffect(() => {
-        config.wpClient.posts().perPage(3).then(data => {
+        config.wpClient.posts().perPage(3).param({sticky: "true"}).then(data => {
             setStickyPosts(data)
         })
         config.wpClient.posts().perPage(30).then(data => {
