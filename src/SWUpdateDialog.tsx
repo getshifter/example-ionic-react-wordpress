@@ -6,8 +6,13 @@ import React, { useState } from 'react';
 export const SWUpdateDialog: React.FC<{ registration: ServiceWorkerRegistration }> = ({ registration }) => {
   const [show, setShow] = useState(!!registration.waiting);
   const style: React.CSSProperties = {
-    width: '100%',
     backgroundColor: 'deepskyblue',
+    position: 'fixed',
+    top: 0,
+    left: 0,
+    width: '100%',
+    textAlign: 'center',
+    padding: '10px',
   };
   const handleUpdate = () => {
     registration.waiting?.postMessage({ type: 'SKIP_WAITING' });
@@ -16,9 +21,8 @@ export const SWUpdateDialog: React.FC<{ registration: ServiceWorkerRegistration 
   };
 
   return show ? (
-    <div style={style}>
+    <div style={style} onClick={handleUpdate}>
       <span>New version is available!</span>
-      <button onClick={handleUpdate}>Update</button>
     </div>
   ) : (
     <></>
