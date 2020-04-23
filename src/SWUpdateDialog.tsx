@@ -25,6 +25,6 @@ export const SWUpdateDialog: React.FC<{ registration: ServiceWorkerRegistration 
       <span>New version is available!</span>
     </div>
   ) : (
-    <></>
+    null
   );
 };
