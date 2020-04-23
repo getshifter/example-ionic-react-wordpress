@@ -7,10 +7,15 @@ import {
     WPPost
 } from '../wp.interface'
 import { IonRefresher, IonRefresherContent } from '@ionic/react'
+import CardPosts from '../components/CardPosts';
 
 const Home: React.FC = () => {
+    const [stickyPosts, setStickyPosts] = useState<WPPost[]>([])
     const [posts, setPosts] = useState<WPPost[]>([])
     useEffect(() => {
+        config.wpClient.posts().perPage(3).then(data => {
+            setStickyPosts(data)
+        })
         config.wpClient.posts().perPage(30).then(data => {
             setPosts(data)
         })
@@ -27,6 +32,14 @@ const Home: React.FC = () => {
             <IonRefresher slot="fixed" onIonRefresh={handleRefresh}>
                 <IonRefresherContent />
             </IonRefresher>
+            <CardPosts
+                posts={stickyPosts.length > 0 ? stickyPosts: undefined}
+                style={{
+                    backgroundColor: '#ddd',
+                    paddingBottom: '25px',
+                    paddingTop: '25px',
+                }}
+            />
             <ListPost posts={posts} />
         </Layout>
     )

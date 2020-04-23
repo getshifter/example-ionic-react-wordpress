@@ -6,6 +6,7 @@ import { WPPost } from '../wp.interface';
 import { useLoading } from '../helpers/hooks';
 import Single from '../components/Single';
 import RelatedPosts from '../components/RelatedPosts';
+import { IonItemDivider } from '@ionic/react';
 
 const Post: React.FC = () => {
     const {
@@ -25,7 +26,9 @@ const Post: React.FC = () => {
     <Layout>
       <Single post={post} loading={loading} />
       <RelatedPosts target="category" post={post} />
+      <IonItemDivider />
       <RelatedPosts target="tags" post={post} />
+      <IonItemDivider />
     </Layout>
   )
 };

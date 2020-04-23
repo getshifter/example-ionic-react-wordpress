@@ -16,7 +16,7 @@ const Layout: React.FC<{
   return (
     <IonPage>
       <IonHeader>
-        <IonToolbar>
+        <IonToolbar color="primary">
           <IonButtons slot="start">
             {match.url === '/' ? null: (
                 <IonBackButton />
