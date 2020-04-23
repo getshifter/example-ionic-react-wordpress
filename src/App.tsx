@@ -28,6 +28,7 @@ import Category from './pages/Category';
 import Post from './pages/Post';
 import config from './config';
 import { createRelativeLink } from './helpers/url';
+import "./App.css"
 
 const App: React.FC = () => {
   const pageURL = createRelativeLink(config.pageURLPrefix, ':slug')
