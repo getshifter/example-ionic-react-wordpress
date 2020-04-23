@@ -1,4 +1,4 @@
-import { IonButtons, IonContent, IonHeader, IonMenuButton, IonPage, IonTitle, IonToolbar, IonButton, IonBackButton } from '@ionic/react';
+import { IonButtons, IonContent, IonHeader, IonMenuButton, IonPage, IonTitle, IonToolbar, IonBackButton } from '@ionic/react';
 import React, {useState, useEffect} from 'react';
 import { withRouter, RouteComponentProps } from 'react-router';
 import config from '../config';

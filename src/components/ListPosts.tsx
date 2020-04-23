@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { CSSProperties } from 'react'
 import moment from 'moment'
 import { IonList, IonItem, IonLabel, IonSkeletonText } from '@ionic/react'
 
@@ -7,6 +7,10 @@ import {
     } from '../wp.interface'
 import config from '../config'
 import { createRelativeLink } from '../helpers/url'
+
+const TitleStyle: CSSProperties = {
+    fontSize: '1.5rem'
+}
 
 const ListPost: React.FC<{
     posts: WPPost[]
@@ -60,13 +64,14 @@ const ListPost: React.FC<{
                 const link = createRelativeLink(config.postURLPrefix, post.slug)
                 return (
                     <IonItem key={post.id} routerLink={link}>
-                        <IonLabel>
-                            <h3 dangerouslySetInnerHTML={{__html: post.title.rendered}} />
-                            <p>
-                                Published: {moment(post.date).format('MMMM Do YYYY')}<br/>
-                                Modified: {moment(post.modified).format('MMMM Do YYYY')}
-                            </p>
-                        </IonLabel>
+                    <section>
+                    <h3 dangerouslySetInnerHTML={{__html: post.title.rendered}} style={TitleStyle} />
+                    <IonLabel>
+                        Published: {moment(post.date).format('MMMM Do YYYY')}<br/>
+                        Modified: {moment(post.modified).format('MMMM Do YYYY')}
+                    </IonLabel>
+                    <div dangerouslySetInnerHTML={{__html: post.excerpt.rendered}} />
+                    </section>
                     </IonItem>
                     )
                 }
