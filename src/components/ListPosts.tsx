@@ -64,14 +64,14 @@ const ListPost: React.FC<{
                 const link = createRelativeLink(config.postURLPrefix, post.slug)
                 return (
                     <IonItem key={post.id} routerLink={link}>
-                    <section>
-                    <h3 dangerouslySetInnerHTML={{__html: post.title.rendered}} style={TitleStyle} />
-                    <IonLabel>
-                        Published: {moment(post.date).format('MMMM Do YYYY')}<br/>
-                        Modified: {moment(post.modified).format('MMMM Do YYYY')}
-                    </IonLabel>
-                    <div dangerouslySetInnerHTML={{__html: post.excerpt.rendered}} />
-                    </section>
+                        <section>
+                            <h3 dangerouslySetInnerHTML={{__html: post.title.rendered}} style={TitleStyle} />
+                            <IonLabel>
+                                Published: {moment(post.date).format('MMMM Do YYYY')}<br/>
+                                Modified: {moment(post.modified).format('MMMM Do YYYY')}
+                            </IonLabel>
+                            <div dangerouslySetInnerHTML={{__html: post.excerpt.rendered}} />
+                        </section>
                     </IonItem>
                     )
                 }

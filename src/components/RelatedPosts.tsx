@@ -3,7 +3,7 @@ import config from '../config'
 import {
     WPPost, WPPosts
 } from '../wp.interface'
-import { IonCard, IonCardTitle, IonCardHeader, IonGrid, IonRow, IonCol, IonCardContent, IonItem } from '@ionic/react'
+import { IonCard, IonCardTitle, IonCardHeader, IonGrid, IonRow, IonCol, IonCardContent, IonItemDivider } from '@ionic/react'
 import { createRelativeLink } from '../helpers/url'
 
 const RelatedPosts: React.FC<{
@@ -32,20 +32,19 @@ const RelatedPosts: React.FC<{
                 posts.map(p => {
                     return (
                         <IonCol key={p.id}>
-                            <IonItem routerLink={createRelativeLink(config.postURLPrefix, p.slug)}>
-                                <IonCard>
-                                    <IonCardHeader>
-                                        <IonCardTitle>{p.title.rendered}</IonCardTitle>
-                                    </IonCardHeader>
-                                    <IonCardContent>
-                                        <div dangerouslySetInnerHTML={{__html: p.excerpt.rendered}} />
-                                    </IonCardContent>
-                                </IonCard>
-                            </IonItem>
+                            <IonCard routerLink={createRelativeLink(config.postURLPrefix, p.slug)}>
+                                <IonCardHeader>
+                                    <IonCardTitle>{p.title.rendered}</IonCardTitle>
+                                </IonCardHeader>
+                                <IonCardContent>
+                                    <div dangerouslySetInnerHTML={{__html: p.excerpt.rendered}} />
+                                </IonCardContent>
+                            </IonCard>
                         </IonCol>
                     )
                 }): <p className="ion-padding-start">No posts</p>}
             </IonRow>
+            <IonItemDivider />
         </IonGrid>
     )
 }
