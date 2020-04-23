@@ -34,6 +34,7 @@ const App: React.FC = () => {
   const postURL = createRelativeLink(config.postURLPrefix, ':slug')
   return (
     <IonApp>
+      <div className="SW-update-dialog"></div>
       <IonReactRouter>
         <IonSplitPane contentId="main">
           <Menu />

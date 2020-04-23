@@ -66,6 +66,12 @@ function registerValidSW(swUrl: string, config?: Config) {
   navigator.serviceWorker
     .register(swUrl)
     .then(registration => {
+      /**
+       * @see https://qiita.com/wakeupsloth/items/6778df1e984f55c446e9#1-waiting%E7%8A%B6%E6%85%8B%E3%81%AEservice-worker%E3%82%92%E6%A4%9C%E5%87%BA%E3%81%97%E3%81%A6onupdate%E3%82%92%E7%99%BA%E7%81%AB%E3%81%99%E3%82%8B
+       */
+      if (registration.waiting && config && config.onUpdate) {
+        config.onUpdate(registration);
+      }
       registration.onupdatefound = () => {
         const installingWorker = registration.installing;
         if (installingWorker == null) {

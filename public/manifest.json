@@ -1,6 +1,6 @@
 {
-  "short_name": "Ionic App",
-  "name": "My Ionic App",
+  "short_name": "WP Ionic",
+  "name": "WP Ionic example",
   "icons": [
     {
       "src": "assets/icon/favicon.png",
