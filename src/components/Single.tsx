@@ -31,6 +31,7 @@ const Single: React.FC<{
                   <Fragment>
                     <p>Categories:</p>
                     {post._embedded["wp:term"].map(terms => {
+                      if (!terms || terms.length < 1) return null;
                       return (
                         <Fragment key={`cat-${terms[0].id}`}>
                           {terms.map(term => {
@@ -44,6 +45,7 @@ const Single: React.FC<{
                     })}
                     <p>Tags:</p>
                     {post._embedded["wp:term"].map(terms => {
+                      if (!terms || terms.length < 1) return null;
                       return (
                         <Fragment key={`tag-${terms[0].id}`}>
                           {terms.map(term => {
