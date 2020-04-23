@@ -20,6 +20,9 @@ const RelatedPosts: React.FC<{
                     return (
                         <IonCol key={p.id}>
                             <IonCard routerLink={createRelativeLink(config.postURLPrefix, p.slug)} style={{height: '100%'}}>
+                                {p._embedded && p._embedded["wp:featuredmedia"] ? (
+                                    <img src={p._embedded["wp:featuredmedia"][0].source_url} alt="thumbnail" />
+                                ): null}
                                 <IonCardHeader>
                                     <IonCardTitle>{p.title.rendered}</IonCardTitle>
                                 </IonCardHeader>

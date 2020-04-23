@@ -1,7 +1,6 @@
 import React, { CSSProperties } from 'react'
 import moment from 'moment'
-import { IonList, IonItem, IonLabel, IonSkeletonText } from '@ionic/react'
-
+import { IonList, IonItem, IonLabel, IonSkeletonText, IonThumbnail } from '@ionic/react'
 import {
     WPPost
     } from '../wp.interface'
@@ -64,6 +63,14 @@ const ListPost: React.FC<{
                 const link = createRelativeLink(config.postURLPrefix, post.slug)
                 return (
                     <IonItem key={post.id} routerLink={link}>
+                        {post._embedded && post._embedded["wp:featuredmedia"] ? (
+                            <IonThumbnail slot="start">
+                                <img src={post._embedded["wp:featuredmedia"][0].source_url} alt="thumbnail"/>
+                            </IonThumbnail>
+                        ): (
+                            <IonThumbnail slot="start">
+                                <img src="/assets/icon/icon-152x152.png" alt="thumbnail" />
+                            </IonThumbnail>)}
                         <section>
                             <h3 dangerouslySetInnerHTML={{__html: post.title.rendered}} style={TitleStyle} />
                             <IonLabel>

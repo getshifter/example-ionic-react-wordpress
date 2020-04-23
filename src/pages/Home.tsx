@@ -13,15 +13,15 @@ const Home: React.FC = () => {
     const [stickyPosts, setStickyPosts] = useState<WPPost[]>([])
     const [posts, setPosts] = useState<WPPost[]>([])
     useEffect(() => {
-        config.wpClient.posts().perPage(3).param({sticky: "true"}).then(data => {
+        config.wpClient.posts().perPage(3).param({sticky: "true"}).embed().then(data => {
             setStickyPosts(data)
         })
-        config.wpClient.posts().perPage(30).then(data => {
+        config.wpClient.posts().perPage(30).embed().then(data => {
             setPosts(data)
         })
     }, [])
     const handleRefresh = useCallback((event: CustomEvent<RefresherEventDetail>) => {
-        config.wpClient.posts().perPage(30).then(data => {
+        config.wpClient.posts().perPage(30).embed().then(data => {
             setPosts(data)
         }).finally(() => {
             event.detail.complete()
