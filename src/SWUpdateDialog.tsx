@@ -13,6 +13,8 @@ export const SWUpdateDialog: React.FC<{ registration: ServiceWorkerRegistration 
     width: '100%',
     textAlign: 'center',
     padding: '10px',
+    zIndex: 999,
+    cursor: 'pointer'
   };
   const handleUpdate = () => {
     registration.waiting?.postMessage({ type: 'SKIP_WAITING' });
