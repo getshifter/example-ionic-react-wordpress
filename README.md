@@ -39,3 +39,23 @@ class Config {
 ```bash
 $ npm run build
 ```
+
+## Desktop application
+
+We can run it as a Desktop application
+
+
+```bash
+$ yarn run build && npx cap copy
+$ npx cap open electron
+```
+
+
+### Build for Desktop
+
+```bash
+$ yarn run build && npx cap copy
+$ cd electron
+$ npx electron-packager . sample --platform=darwin --arch=x64
+$ open ./sample-darwin-x64
+```
