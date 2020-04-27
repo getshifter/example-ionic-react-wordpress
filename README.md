@@ -4,7 +4,7 @@
 ## Getting started
 
 ```bash
-$ git clone
+$ git clone git@github.com:getshifter/ionic-react-wordpress.git
 $ cd ionic-react-wordpress 
 $ npm install
 $ npm start
