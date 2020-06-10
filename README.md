@@ -1,5 +1,13 @@
 # Ionic React with WordPress example
 
+## Just try the demo site
+
+You can deploy the demo site to the following services.
+
+[![amplifybutton](https://oneclick.amplifyapp.com/button.svg)](https://console.aws.amazon.com/amplify/home#/deploy?repo=https://github.com/getshifter/ionic-react-wordpress)
+
+
+[![netlifybutton](https://www.netlify.com/img/deploy/button.svg)](https://app.netlify.com/start/deploy?repository=https://github.com/getshifter/ionic-react-wordpress)
 
 ## Getting started
 
