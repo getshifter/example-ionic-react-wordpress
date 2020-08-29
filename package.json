@@ -54,7 +54,7 @@
   },
   "devDependencies": {
     "@capacitor/cli": "2.4.0",
-    "@ionic/cli": "6.11.6",
+    "@ionic/cli": "6.11.7",
     "@types/react-responsive": "8.0.2",
     "@types/wpapi": "1.1.0"
   },
