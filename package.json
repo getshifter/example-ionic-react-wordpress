@@ -13,8 +13,8 @@
     "@testing-library/user-event": "12.1.10",
     "@types/jest": "26.0.15",
     "@types/node": "12.12.37",
-    "@types/react": "16.9.53",
-    "@types/react-dom": "16.9.8",
+    "@types/react": "16.9.55",
+    "@types/react-dom": "16.9.9",
     "@types/react-router": "5.1.8",
     "@types/react-router-dom": "5.1.6",
     "ionicons": "5.2.3",
@@ -25,7 +25,7 @@
     "react-router": "5.2.0",
     "react-router-dom": "5.2.0",
     "react-scripts": "3.4.3",
-    "typescript": "4.0.3",
+    "typescript": "4.0.5",
     "wpapi": "1.2.1"
   },
   "scripts": {
@@ -54,7 +54,7 @@
   },
   "devDependencies": {
     "@capacitor/cli": "2.4.2",
-    "@ionic/cli": "6.12.0",
+    "@ionic/cli": "6.12.1",
     "@types/react-responsive": "8.0.2",
     "@types/wpapi": "1.1.0"
   },
