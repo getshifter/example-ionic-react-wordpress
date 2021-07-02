@@ -56,7 +56,7 @@
     "@capacitor/cli": "2.4.7",
     "@ionic/cli": "6.12.4",
     "@types/react-responsive": "8.0.2",
-    "@types/wpapi": "1.1.0"
+    "@types/wpapi": "1.1.1"
   },
   "description": "An Ionic project"
 }
