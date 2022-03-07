@@ -1985,10 +1985,10 @@
   dependencies:
     "@types/react" "*"
 
-"@types/react-responsive@8.0.3":
-  version "8.0.3"
-  resolved "https://registry.npmjs.org/@types/react-responsive/-/react-responsive-8.0.3.tgz"
-  integrity sha512-K9VsY1tbwt/CNQ/00oGIXjnRwj+3WRB/nDN9Oglqn41sFgVH5A0WkERO7P2xGJJU3ylttiKnT3stZxIccGVBug==
+"@types/react-responsive@8.0.5":
+  version "8.0.5"
+  resolved "https://registry.npmjs.org/@types/react-responsive/-/react-responsive-8.0.5.tgz"
+  integrity sha512-k3gQJgI87oP5IrVZe//3LKJFnAeFaqqWmmtl5eoYL2H3HqFcIhUaE30kRK1CsW3DHdojZxcVj4ZNc2ClsEu2PA==
   dependencies:
     "@types/react" "*"
 
