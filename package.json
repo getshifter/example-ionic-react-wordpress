@@ -4,7 +4,7 @@
   "private": true,
   "homepage": "./",
   "dependencies": {
-    "@capacitor/core": "2.4.7",
+    "@capacitor/core": "2.5.0",
     "@ionic/react": "5.5.4",
     "@ionic/react-hooks": "0.0.8",
     "@ionic/react-router": "5.5.4",
@@ -53,7 +53,7 @@
     ]
   },
   "devDependencies": {
-    "@capacitor/cli": "2.4.7",
+    "@capacitor/cli": "2.5.0",
     "@ionic/cli": "6.12.4",
     "@types/react-responsive": "8.0.3",
     "@types/wpapi": "1.1.1"
