@@ -18,7 +18,7 @@
     "@types/react-router": "5.1.16",
     "@types/react-router-dom": "5.1.8",
     "ionicons": "5.4.0",
-    "moment": "2.29.1",
+    "moment": "2.29.4",
     "react": "17.0.1",
     "react-dom": "17.0.1",
     "react-responsive": "8.2.0",
