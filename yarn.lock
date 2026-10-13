@@ -2080,10 +2080,10 @@
     "@types/webpack-sources" "*"
     source-map "^0.6.0"
 
-"@types/wpapi@1.1.1":
-  version "1.1.1"
-  resolved "https://registry.npmjs.org/@types/wpapi/-/wpapi-1.1.1.tgz"
-  integrity sha512-Ek1siuveAaN/iVoRvGbSGWNBg7RXQoz4Am1C3nnoXVA33f/0+9GibJq/xNBWsInZk5mNVqySkeYVco5C1KMqog==
+"@types/wpapi@1.1.4":
+  version "1.1.4"
+  resolved "https://registry.yarnpkg.com/@types/wpapi/-/wpapi-1.1.4.tgz#a8e949f693da0f9337e7e322c5ef9b3617ee46d3"
+  integrity sha512-huqjb3PQ7cJsYlPXxUPDAKSptQ0Ko2gLUZKK7ra9PUU45el0djACDnTJB56nsCPplRZ0C5KJ3xKE9MxvGr1+yQ==
 
 "@types/yargs-parser@*":
   version "20.2.0"
